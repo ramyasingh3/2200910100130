@@ -1,4 +1,4 @@
-import { log, LoggerClient } from "./logger";
+import { log, LoggerClient } from "./logger.js";
 export function requestLogger(options) {
     const level = options.level ?? "info";
     const client = options.endpoint
