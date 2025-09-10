@@ -1,6 +1,8 @@
 import express from "express";
 import { z } from "zod";
-import { requestLogger, errorLogger, log } from "../../logging-middleware/dist";
+// Important: use explicit file for ESM resolution
+import { log } from "../../logging-middleware/dist/logger.js";
+import { requestLogger, errorLogger } from "../../logging-middleware/dist/middleware.js";
 const app = express();
 app.use(express.json());
 const LOG_ENDPOINT = process.env.LOG_ENDPOINT || "http://20.204.56.144/evaluation-service/logs";

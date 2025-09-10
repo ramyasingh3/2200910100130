@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { z } from "zod";
-import { requestLogger, errorLogger, log } from "../../logging-middleware/dist";
+// Important: use explicit file for ESM resolution
+import { log } from "../../logging-middleware/dist/logger.js";
+import { requestLogger, errorLogger } from "../../logging-middleware/dist/middleware.js";
  
 const app = express();
 app.use(express.json());
