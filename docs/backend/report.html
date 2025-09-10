@@ -1,0 +1,52 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backend API Report</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; }
+  h2 { margin-top: 32px; }
+  pre { background: #111; color: #fff; padding: 12px; border-radius: 6px; overflow: auto; }
+  code { color: #cde; }
+  .badge { display: inline-block; background:#eee; border:1px solid #ccc; padding:2px 8px; border-radius: 999px; font-size: 12px; }
+</style>
+<h1>URL Shortener Backend — Request/Response/Time</h1>
+<p>Generated at <code>2025-09-10T10:08:35Z</code></p>
+
+<h2>1) Create Short URL (POST /shorturls) <span class="badge">time: 12.918611s</span></h2>
+<h3>Request Body</h3>
+<pre id="create-body">{ "url": "https://example.com", "validity": 30, "shortcode": "abcd7" }</pre>
+<h3>Response</h3>
+<pre id="create-headers">HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-A/1kEFR0onzWmhGnkcjCBs1aB8o"
+Date: Wed, 10 Sep 2025 10:08:35 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+</pre>
+<pre id="create-json">{"shortLink":"http://localhost:3000/abcd7","expiry":"2025-09-10T10:38:22.247Z"}</pre>
+
+<h2>2) Redirect (GET /abcd7) <span class="badge">time: 0.003058s</span></h2>
+<p>Shows 302 with Location header (no body).</p>
+<pre id="redirect-headers">HTTP/1.1 302 Found
+X-Powered-By: Express
+Location: https://example.com
+Vary: Accept
+Content-Type: text/plain; charset=utf-8
+Content-Length: 41
+Date: Wed, 10 Sep 2025 10:08:35 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+</pre>
+
+<h2>3) Stats (GET /shorturls/abcd7/stats) <span class="badge">time: 0.001031s</span></h2>
+<pre id="stats-headers">HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 211
+ETag: W/"d3-z/t/d2EUoAjXv/OLz0UOreR3BsM"
+Date: Wed, 10 Sep 2025 10:08:35 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+</pre>
+<pre id="stats-json">{"shortCode":"abcd7","originalUrl":"https://example.com","createdAt":"2025-09-10T10:08:22.247Z","expiry":"2025-09-10T10:38:22.247Z","totalClicks":1,"clicks":[{"timestamp":"2025-09-10T10:08:35.184Z","ip":"::1"}]}</pre>
